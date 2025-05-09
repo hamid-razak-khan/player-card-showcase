@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { FilterBar } from "@/components/FilterBar";
 import { PlayerGrid } from "@/components/PlayerGrid";
-import { BudgetEstimator } from "@/components/BudgetEstimator";
 import { AdminForm } from "@/components/AdminForm";
 import { samplePlayers } from "@/data/players";
 import { PlayerType } from "@/types/player";
@@ -80,14 +79,6 @@ const Index = () => {
     }
   };
 
-  const handleRemoveFromCart = (playerId: string) => {
-    setCartPlayers(cartPlayers.filter(p => p.id !== playerId));
-  };
-
-  const handleClearCart = () => {
-    setCartPlayers([]);
-  };
-
   const handleAddPlayer = (player: PlayerType) => {
     setPlayers([...players, player]);
   };
@@ -107,31 +98,22 @@ const Index = () => {
         isAdmin={isAdmin}
       />
       
-      <FilterBar 
-        selectedRole={selectedRole}
-        onRoleChange={setSelectedRole}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        onResetFilters={resetFilters}
-      />
-      
-      <div className="container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="md:col-span-2 lg:col-span-3">
-          {isAdmin && <AdminForm onAddPlayer={handleAddPlayer} />}
-          <PlayerGrid 
-            players={filteredPlayers} 
-            cartPlayers={cartPlayers} 
-            onAddToCart={handleAddToCart} 
-          />
-        </div>
+      <div className="container mx-auto px-4">
+        <FilterBar 
+          selectedRole={selectedRole}
+          onRoleChange={setSelectedRole}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          onResetFilters={resetFilters}
+        />
         
-        <div className="md:col-span-1">
-          <BudgetEstimator 
-            cartPlayers={cartPlayers}
-            onRemoveFromCart={handleRemoveFromCart}
-            onClearCart={handleClearCart}
-          />
-        </div>
+        {isAdmin && <AdminForm onAddPlayer={handleAddPlayer} />}
+        
+        <PlayerGrid 
+          players={filteredPlayers} 
+          cartPlayers={cartPlayers} 
+          onAddToCart={handleAddToCart} 
+        />
       </div>
     </div>
   );
