@@ -1,6 +1,5 @@
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { PlayerType } from "@/types/player";
 
@@ -71,19 +70,10 @@ export function PlayerCard({ player, onAddToCart, isInCart }: PlayerCardProps) {
         )}
       </div>
       
-      <div className="w-full flex items-center justify-between mt-auto">
+      <div className="w-full text-center mt-auto">
         <div className="text-xs sm:text-sm font-medium">
           {formatAmount(player.basePrice)}
         </div>
-        
-        <Button 
-          size="sm" 
-          variant={isInCart ? "outline" : "default"}
-          onClick={() => onAddToCart(player)}
-          className="text-xs py-1 h-7"
-        >
-          {isInCart ? "Selected" : "Select"}
-        </Button>
       </div>
     </div>
   );
