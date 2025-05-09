@@ -27,12 +27,12 @@ export function PlayerCard({ player, onAddToCart, isInCart }: PlayerCardProps) {
 
   return (
     <div 
-      className={`bg-card shadow rounded-lg transition-all duration-300 p-4 flex flex-col items-center ${isInCart ? 'ring-2 ring-primary' : ''}`}
+      className={`bg-background border rounded-lg transition-all duration-200 p-4 flex flex-col items-center ${isInCart ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="relative">
-        <div className={`w-20 h-20 rounded-full overflow-hidden border-4 ${roleClass} mb-2`}>
+      <div className="relative mb-3">
+        <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 ${roleClass} flex items-center justify-center`}>
           <img
             src={player.imageUrl || '/placeholder.svg'}
             alt={player.name}
@@ -42,15 +42,15 @@ export function PlayerCard({ player, onAddToCart, isInCart }: PlayerCardProps) {
             }}
           />
         </div>
-        <Badge className={`absolute -bottom-1 ${roleBadgeClass} text-xs`}>
+        <Badge className={`absolute -bottom-1 right-0 ${roleBadgeClass} text-xs`}>
           {player.role}
         </Badge>
       </div>
       
-      <h3 className="font-semibold text-lg mt-2 text-center">{player.name}</h3>
-      <p className="text-sm text-muted-foreground text-center">{player.team}</p>
+      <h3 className="font-semibold text-center text-base sm:text-lg">{player.name}</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground text-center mb-2">{player.team}</p>
       
-      <div className="flex justify-center gap-3 mt-2 mb-2 text-xs">
+      <div className="flex justify-center gap-3 mb-3 text-xs">
         <div className="flex flex-col items-center">
           <span className="font-semibold">{player.matches}</span>
           <span className="text-muted-foreground">Matches</span>
@@ -71,8 +71,8 @@ export function PlayerCard({ player, onAddToCart, isInCart }: PlayerCardProps) {
         )}
       </div>
       
-      <div className="mt-auto pt-2 w-full flex items-center justify-between">
-        <div className="text-sm font-medium">
+      <div className="w-full flex items-center justify-between mt-auto">
+        <div className="text-xs sm:text-sm font-medium">
           {formatAmount(player.basePrice)}
         </div>
         

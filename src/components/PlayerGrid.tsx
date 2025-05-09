@@ -17,7 +17,7 @@ export function PlayerGrid({ players, cartPlayers, onAddToCart }: PlayerGridProp
           <p className="text-muted-foreground mt-2">Try changing your filters or search query</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {players.map((player) => (
             <PlayerCard
               key={player.id}
